@@ -1,0 +1,12 @@
+{
+  "name": "Server_API",
+  "version": "1.0.0",
+  "description": "simple server express based",
+  "main": "index.js",
+  "author": "Ireneusz Wyszomirski <ireneuszwyszomirski44@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}
