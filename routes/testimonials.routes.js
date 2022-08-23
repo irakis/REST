@@ -7,7 +7,7 @@ router.route('/testimonials').get((req, res) => {
 });
   
 router.route('/testimonials/random').get((req, res) => {
-  const randomId = Math.round(Math.random()+1);
+  const randomId = Math.round( Math.random () + 1 );
   const randomTestimonial = db.testimonials.find((singleDb) => singleDb.id == randomId);
   res.json(randomTestimonial);
 });

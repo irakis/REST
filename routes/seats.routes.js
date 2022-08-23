@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const { v4: uuidv4 } = require('uuid');
 
 router.route('/seats').get((req, res) => {
     res.json(db.seats)
@@ -32,25 +33,27 @@ router.route('/seats/:id').put(( req,res ) => {
     db.seats[(req.params.id - 1)].email = req.body.email;
     res.json({message: 'OK'})
   }
-})
+});
   
 router.route('/seats/:id').post(( req, res ) => {
   const { client, day, email, seat } = req.body;
-  const allDayReservation = db.seats.filter(singleDb => singleDb.day == req.body.day)
-  const newId = allDayReservation.some(singleId => singleId.id == req.params.id);
-  if(!newId){
-    const nextId = db.seats.length + 1;
+  console.log('req.body: ', req.body);
+  const bookedSeat = db.seats.some(singleSeat => singleSeat.day == req.body.day && singleSeat.seat === req.body.seat);
+  console.log('bookedSeat: ',bookedSeat)
+  if(bookedSeat) {
+    res.status(409).json({error: 'The slot is already taken...'})
+  } else {
+    const nextId = uuidv4();
     db.seats.push({ id: nextId, day: req.body.day, seat: req.body.seat,
       client: req.body.client, email: req.body.email})
-    res.json({message: 'OK'})
-  } else {
-    res.json({message: 'The slot is already taken...'})
+    res.status(201).json({message: 'OK'})
   }
-})
+});
+  
   
 router.route('/seats/:id').delete(( req, res ) => {
   db.seats.splice(req.params.id - 1);
-  res.json({message: 'OK'})
+  res.status(204).json({message: 'OK'})
 })
 
 module.exports = router;

@@ -34,15 +34,13 @@ export const loadSeatsRequest = () => {
     try {
 
       let res = await axios.get(`${API_URL}/seats`);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       dispatch(loadSeats(res.data));
       dispatch(endRequest({ name: 'LOAD_SEATS' }));
 
     } catch(e) {
       dispatch(errorRequest({ name: 'LOAD_SEATS', error: e.message }));
     }
-
-  };
+  }
 };
 
 export const addSeatRequest = (seat) => {
@@ -52,7 +50,7 @@ export const addSeatRequest = (seat) => {
     dispatch(startRequest({ name: 'ADD_SEAT' }));
     try {
 
-      let res = await axios.post(`${API_URL}/seats/seat.seat`, seat);
+      let res = await axios.post(`${API_URL}/seats/seat`, seat);
       console.log('seatRedux : ',res)
       dispatch(addSeat(res));
       dispatch(endRequest({ name: 'ADD_SEAT' }));
