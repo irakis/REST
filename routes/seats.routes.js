@@ -35,15 +35,16 @@ router.route('/seats/:id').put(( req,res ) => {
 })
   
 router.route('/seats/:id').post(( req, res ) => {
-  const { day, seat, client, email } = req.body;
-  const newId = db.seats.find(singleId => singleId.id == req.params.id);
+  const { client, day, email, seat } = req.body;
+  const allDayReservation = db.seats.filter(singleDb => singleDb.day == req.body.day)
+  const newId = allDayReservation.some(singleId => singleId.id == req.params.id);
   if(!newId){
     const nextId = db.seats.length + 1;
     db.seats.push({ id: nextId, day: req.body.day, seat: req.body.seat,
       client: req.body.client, email: req.body.email})
     res.json({message: 'OK'})
   } else {
-    res.json({message: 'id is taken.'})
+    res.json({message: 'The slot is already taken...'})
   }
 })
   

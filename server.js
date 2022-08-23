@@ -8,7 +8,7 @@ const seatsRoutes = require('./routes/seats.routes');
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000'}));
 app.use('/api', testimonialsRoutes);
 app.use('/api', concertRoutes);
 app.use('/api', seatsRoutes)
