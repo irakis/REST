@@ -1,5 +1,5 @@
 {
-  "name": "Server_API",
+  "name": "Server-api",
   "version": "1.0.0",
   "description": "simple server express based",
   "main": "index.js",
@@ -21,7 +21,6 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "webpack --config webpack.dev.js"
+    "start": "nodemon server.js"
   }
 }
