@@ -45,13 +45,10 @@ export const loadSeatsRequest = () => {
 
 export const addSeatRequest = (seat) => {
   return async dispatch => {
-    console.log(seat);
 
     dispatch(startRequest({ name: 'ADD_SEAT' }));
     try {
-
       let res = await axios.post(`${API_URL}/seats/seat`, seat);
-      console.log('seatRedux : ',res)
       dispatch(addSeat(res));
       dispatch(endRequest({ name: 'ADD_SEAT' }));
 

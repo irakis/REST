@@ -9,10 +9,11 @@ const path = require('path');
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000'}));
+app.use(cors());
 app.use('/api', testimonialsRoutes);
 app.use('/api', concertRoutes);
 app.use('/api', seatsRoutes)
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/client/build')));
 
