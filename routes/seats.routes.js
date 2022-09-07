@@ -37,19 +37,22 @@ router.route('/seats/:id').put(( req,res ) => {
   
 router.route('/seats/:id').post(( req, res ) => {
   const { client, day, email, seat, io } = req.body;
+  
   const bookedSeat = db.seats.some(singleSeat => singleSeat.day == req.body.day && singleSeat.seat === req.body.seat);
   if(bookedSeat) {
     res.status(409).json({error: 'The slot is already taken...'})
   } else {
     const nextId = uuidv4();
+    
     db.seats.push({ id: nextId, day: req.body.day, seat: req.body.seat,
       client: req.body.client, email: req.body.email})
+      req.io.emit('seatsUpdated', db.seats)
     res.status(201).json({message: 'OK'})
   };
-  req.io.emit('seatsUpdated', db.seats)
+  
 });
   
-console.log(db.seats);
+console.log('db po update???',db.seats);
 
 router.route('/seats/:id').delete(( req, res ) => {
   db.seats.splice(req.params.id - 1);

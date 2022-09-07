@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
   const seats = useSelector(getSeats);
-  console.log(seats);
+  console.log('getSeats??? ',seats);
   const requests = useSelector(getRequests);
 
   // eslint-disable-next-line 
@@ -19,7 +19,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
     transports: ['websocket'],
   });
     setSocket(socket);
-    socket.on('seatsUpdated', (seats) => {loadSeats(seats)})
+    socket.on('seatsUpdated', (seats) => loadSeats(seats))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
