@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Progress, Alert } from 'reactstrap';
 import { getSeats, getRequests, loadSeats} from '../../../redux/seatsRedux';
 import './SeatChooser.scss';
@@ -10,6 +10,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const seats = useSelector(getSeats);
   console.log('getSeats??? ',seats);
   const requests = useSelector(getRequests);
+  const dispatch = useDispatch();
 
   // eslint-disable-next-line 
   const [ socket, setSocket] = useState(null);
@@ -19,10 +20,11 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
     transports: ['websocket'],
   });
     setSocket(socket);
-    socket.on('seatsUpdated', (seats) => loadSeats(seats))
+    socket.on('seatsUpdated', (seats) => reloadSeats(seats))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
+  const reloadSeats = (seats) => dispatch(loadSeats(seats));
  
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
