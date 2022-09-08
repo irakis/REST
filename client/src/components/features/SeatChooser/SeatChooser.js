@@ -8,7 +8,6 @@ import io from 'socket.io-client';
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
   const seats = useSelector(getSeats);
-  console.log('getSeats??? ',seats);
   const requests = useSelector(getRequests);
   const dispatch = useDispatch();
 
@@ -16,15 +15,13 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [ socket, setSocket] = useState(null);
   
   useEffect(() => {
-  const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
-    transports: ['websocket'],
-  });
+    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
+      transports: ['websocket'],
+    });
     setSocket(socket);
-    socket.on('seatsUpdated', (seats) => reloadSeats(seats))
+    socket.on('seatsUpdated', (seats) => dispatch(loadSeats(seats)))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
-  const reloadSeats = (seats) => dispatch(loadSeats(seats));
  
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
