@@ -3,8 +3,9 @@ const Concert = require('../models/concert.model');
 exports.getAll = async (req, res) => {
     try {
         const con = await Concert.find();
-        if (!con) res.status(404).json({ message: 'Not found' })
-        else res.json(con)
+        if (!con) {
+            res.status(404).json({ message: 'Not found' })
+        } else res.json(con)
     } catch (err) {
         res.status(500).json({ message: err })
     }
@@ -15,8 +16,9 @@ exports.getRandom = async (req, res) => {
         const count = await Concert.countDocuments();
         const rand = Math.floor(Math.random() * count);
         const con = await Concert.findOne().skip(rand)
-        if (con) res.json(con)
-        else res.status(404).json({ message: 'Not found' })
+        if (con) {
+            res.json(con)
+        } else res.status(404).json({ message: 'Not found' })
     } catch (err) { res.status(500).json({ message: ree }) }
 };
 
