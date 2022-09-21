@@ -25,6 +25,6 @@ app.use((req, res) => {
   res.status(400).send('404 not found...');
 });
 
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || 'https://concerts-app-rest.herokuapp.com/', () => {
   console.log('Server is running on port: 8080');
 });
