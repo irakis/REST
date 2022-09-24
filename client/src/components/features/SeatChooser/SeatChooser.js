@@ -19,8 +19,8 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8080', {
-      transports: ['websocket'],
+    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
+      transports: ['websocket']
     });
     setSocket(socket);
     socket.on('seatsUpdated', (seats) => dispatch(loadSeats(seats)))

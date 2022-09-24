@@ -9,8 +9,8 @@ const socket = require('socket.io');
 
 const app = express();
 
-const server = app.listen(process.env.PORT || 8080, () => {
-  console.log('Server is running on port: 8080');
+const server = app.listen(process.env.PORT || 8000, () => {
+  console.log('Server is running on port: 8000');
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -22,7 +22,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use('/api', testimonialsRoutes);
 app.use('/api', concertRoutes);
 app.use('/api', seatsRoutes)
@@ -33,7 +32,6 @@ io.on('connection', (socket) => {
   console.log('New socket!')
 })
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.get('*', (req, res) => {
@@ -43,7 +41,3 @@ app.get('*', (req, res) => {
 app.use((req, res) => {
   res.status(400).send('404 not found...');
 });
-
-
-
-
