@@ -19,7 +19,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
+    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8080', {
       transports: ['websocket'],
     });
     setSocket(socket);
@@ -45,7 +45,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
       {(requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i + 1))}</div>}
       {(requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} />}
       {(requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert>}
-      <p className='mt-3 text-center info'>Free seats {50 - parseInt(`${seatsAmount}`, 10) + '/ 50'}</p>
+      <p className="mt-3 text-center info">Free seats {50 - parseInt(`${seatsAmount}`, 10) + '/ 50'}</p>
     </div>
   )
 }
