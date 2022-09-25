@@ -13,8 +13,6 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const requests = useSelector(getRequests);
   const dispatch = useDispatch();
 
-  console.log('seatsAmount', seatsAmount);
-
   // eslint-disable-next-line 
   const [socket, setSocket] = useState(null);
 
