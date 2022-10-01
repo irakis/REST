@@ -43,9 +43,15 @@ app.use((req, res) => {
   res.status(400).send('404 not found...');
 });
 
+<<<<<<< HEAD
+app.listen(process.env.PORT || 8000 , () => {
+  console.log('Server is running on port: 8000');
+});
+=======
 mongoose.connect('mongodb+srv://admin:admin@cluster0.nr5hjqa.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: false, useUnifiedTopology: true })
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Connected to the database')
 })
 db.on('error', err => console.log('Error' + err));
+>>>>>>> ec0558cd320fcb5b3d4ee8126fe3bcc37fe727c6
