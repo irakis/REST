@@ -1,25 +1,28 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Progress, Alert } from 'reactstrap';
-import { getSeats, loadSeatsRequest, getRequests } from '../../../redux/seatsRedux';
+import { getSeats, getRequests, loadSeats} from '../../../redux/seatsRedux';
 import './SeatChooser.scss';
+import io from 'socket.io-client';
 
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
-  const dispatch = useDispatch();
+
   const seats = useSelector(getSeats);
   const requests = useSelector(getRequests);
+  const dispatch = useDispatch();
+
+  // eslint-disable-next-line 
+  const [ socket, setSocket] = useState(null);
   
   useEffect(() => {
-      dispatch(loadSeatsRequest())
-  }, [dispatch]);
-
-  if(requests) {
-    const interval = setInterval(() => {
-    loadSeatsRequest()}, 120000);
-    clearInterval(interval);
-  }
-  
-
+    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
+      transports: ['websocket'],
+    });
+    setSocket(socket);
+    socket.on('seatsUpdated', (seats) => dispatch(loadSeats(seats)))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+ 
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
   }
