@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
-const { v4: uuidv4 } = require('uuid');
 
+<<<<<<< HEAD
 router.route('/seats').get((req, res) => {
   res.json(db.seats)
 });
@@ -57,5 +56,20 @@ router.route('/seats/:id').delete((req, res) => {
   db.seats.splice(req.params.id - 1);
   res.status(204).json({ message: 'OK' })
 })
+=======
+const SeatController = require('../controllers/seat.controller');
+
+router.get('/seats', SeatController.getAll);
+  
+router.get('/seats/random', SeatController.getRandom);
+  
+router.get('/seats/:id/', SeatController.getSingle);
+  
+router.put('/seats/:id', SeatController.editSingle);
+  
+router.post('/seats', SeatController.postSingle);
+
+router.delete('/seats/:id', SeatController.deleteSingle);
+>>>>>>> 1d87dc52db1876d6779ab6485088f5c3e33c517e
 
 module.exports = router;
