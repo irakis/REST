@@ -6,6 +6,7 @@ const seatsRoutes = require('./routes/seats.routes');
 const path = require('path');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
+//const db = require('./db');
 
 const app = express();
 
@@ -32,7 +33,6 @@ io.on('connection', (socket) => {
   console.log('New socket!')
 })
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.get('*', (req, res) => {
@@ -49,3 +49,4 @@ db.once('open', () => {
   console.log('Connected to the database')
 })
 db.on('error', err => console.log('Error' + err));
+

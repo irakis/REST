@@ -8,6 +8,7 @@ import io from 'socket.io-client';
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
   const seats = useSelector(getSeats);
+  console.log('seats:', seats);
   const takenSeatsByDay = seats.filter(seats => seats.day === chosenDay);
   const seatsAmount = takenSeatsByDay.length;
   const requests = useSelector(getRequests);
@@ -17,7 +18,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
+    const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000/api', {
       transports: ['websocket']
     });
     setSocket(socket);

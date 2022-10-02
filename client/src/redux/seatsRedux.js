@@ -34,6 +34,9 @@ export const loadSeatsRequest = () => {
     try {
 
       let res = await axios.get(`${API_URL}/seats`);
+
+      console.log('res in redux', res)
+
       dispatch(loadSeats(res.data));
       dispatch(endRequest({ name: 'LOAD_SEATS' }));
 

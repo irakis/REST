@@ -9,6 +9,7 @@ import SeatChooser from './../SeatChooser/SeatChooser';
 const OrderTicketForm = () => {
   const dispatch = useDispatch();
   const requests = useSelector(getRequests);
+  
  useEffect(() => {
   dispatch(loadSeatsRequest())
 }, [dispatch]);
