@@ -7,22 +7,21 @@ import io from 'socket.io-client';
 
 const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
 
+  // eslint-disable-next-line 
+  const [socket, setSocket] = useState(null);
+  const dispatch = useDispatch();
+
   const seats = useSelector(getSeats);
-  console.log('seats:', seats);
   const takenSeatsByDay = seats.filter(seats => seats.day === chosenDay);
   const seatsAmount = takenSeatsByDay.length;
   const requests = useSelector(getRequests);
-  const dispatch = useDispatch();
-
-  // eslint-disable-next-line 
-  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000/api', {
       transports: ['websocket']
     });
     setSocket(socket);
-    socket.on('seatsUpdated', (seats) => dispatch(loadSeats(seats)))
+    socket.on('seatsUpdated', (seats) => { dispatch(loadSeats(seats)) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

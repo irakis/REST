@@ -4,7 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 exports.getAll = async (req, res) => {
     try {
         const chair = await Seat.find();
-        console.log('chair'), chair
         if (!chair) {
             res.status(404).json({ message: 'Not found' })
         } else res.json(chair)

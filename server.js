@@ -31,7 +31,7 @@ const io = socket(server);
 
 io.on('connection', (socket) => {
   console.log('New socket!')
-})
+});
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
@@ -43,7 +43,20 @@ app.use((req, res) => {
   res.status(400).send('404 not found...');
 });
 
-mongoose.connect('mongodb+srv://admin:admin@cluster0.nr5hjqa.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: false, useUnifiedTopology: true })
+//connect backend to the database
+
+const NODE_ENV = process.env.NODE_ENV;
+let dbUri = '';
+
+if (NODE_ENV === 'production') {
+  dbUri = 'mongodb+srv://admin:admin@cluster0.nr5hjqa.mongodb.net/?retryWrites=true&w=majority';
+} else if (NODE_ENV === 'test') {
+  dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
+} else {
+  dbUri = 'mongodb://localhost:27017/NewWaveDB';
+}
+
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Connected to the database')
