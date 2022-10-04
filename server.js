@@ -3,6 +3,7 @@ const cors = require('cors')
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertRoutes = require('./routes/concerts.routes');
 const seatsRoutes = require('./routes/seats.routes');
+const performerRoutes = require('./routes/performer.routes');
 const path = require('path');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
@@ -21,7 +22,8 @@ app.use((req, res, next) => {
 
 app.use('/api', testimonialsRoutes);
 app.use('/api', concertRoutes);
-app.use('/api', seatsRoutes)
+app.use('/api', seatsRoutes);
+app.use('/api', performerRoutes);
 
 const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
@@ -63,3 +65,4 @@ db.once('open', () => {
 })
 db.on('error', err => console.log('Error' + err));
 
+module.exports = server;
