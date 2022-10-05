@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Progress, Alert } from 'reactstrap';
-import { getSeats, getRequests, loadSeats } from '../../../redux/seatsRedux';
+import { getSeats, getRequests, loadSeatsRequest } from '../../../redux/seatsRedux';
 import './SeatChooser.scss';
 import io from 'socket.io-client';
 
@@ -21,7 +21,7 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
       transports: ['websocket']
     });
     setSocket(socket);
-    socket.on('seatsUpdated', (seats) => { dispatch(loadSeats(seats)) });
+    socket.on('seatsUpdated', () => { dispatch(loadSeatsRequest()) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
