@@ -25,7 +25,7 @@ describe('GET api/concerts/performer || price || genre || day', () => {
         await performerFour.save();
     });
 
-    it('/:performer should return proper performer found by "performer" ', async  () => {
+    it('/:performer should return proper performer found by "performer" ', async () => {
         const res = await request(server).get('/api/concerts/performer/John Doe')
         expect(res.status).to.be.equal(200);
         expect(res.body).to.not.be.null;
@@ -37,22 +37,30 @@ describe('GET api/concerts/performer || price || genre || day', () => {
         const res = await request(server).get('/api/concerts/genre/Pop');
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('array');
-        expect(res.body.length).to.be.equal(2); 
+        expect(res.body.length).to.be.equal(2);
     });
 
     it('/day/:day should return all concerts filtered by proper price and day', async () => {
         const res = await request(server).get('/api/concerts/price/25/day/1');
         expect(res.status).to.be.equal(200);
-        expect(res.body).to.be.an('array'); 
+        expect(res.body).to.be.an('array');
         expect(res.body.length).to.be.equal(2);
     });
 
-    it('price/:price_min/:price_max should return all concerts from range of price betwieen min and max ', () => {
-        const res = request(server).get('/api/concerts/price/23/25');
+    it('price/:price_min/:price_max should return all concerts from range of price between min and max ', async () => {
+        const res = await request(server).get('/api/concerts/price/pricemin/23/picemax/25');
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('array');
         expect(res.body.length).to.be.equal(3);
-    })
+    });
+
+    it('/day/:day should return all concerts filtered by proper day', async () => {
+        const res = await request(server).get('/api/concerts/day/1');
+        expect(res.status).to.be.equal(200);
+        expect(res.body).to.be.an('array');
+        expect(res.body.length).to.be.equal(3);
+    });
+
     after(async () => {
         await Performer.deleteMany();
     });

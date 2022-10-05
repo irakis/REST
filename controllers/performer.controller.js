@@ -15,7 +15,7 @@ exports.getSingle = async (req, res) => {
 exports.getSingleGenre = async (req, res) => {
     try {
         const genreId = req.params.genre;
-        const genreConcerts = await Performer.find({ genre: genreId});
+        const genreConcerts = await Performer.find({ genre: genreId });
         if (genreConcerts) {
             res.json(genreConcerts)
         } else res.status(404).json({ message: 'Not found' })
@@ -26,8 +26,7 @@ exports.getByPriceRange = async (req, res) => {
     try {
         const priceMin = req.params.price_min;
         const priceMax = req.params.price_max;
-        console.log('??? : ', priceMin, priceMax, req.params);
-        const priceRangeConcerts = await Performer.find({ price: { $gte: priceMin, $lte: priceMax }});
+        const priceRangeConcerts = await Performer.find({ price: { $lte: priceMax, $gte: priceMin } });
         if (priceRangeConcerts) {
             res.json(priceRangeConcerts)
         } else res.status(404).json({ message: 'Not found' })
@@ -38,7 +37,17 @@ exports.getSingleByPriceDay = async (req, res) => {
     try {
         const dayId = req.params.day;
         const priceId = req.params.price;
-        const concertsByDay = await Performer.find({ day: dayId, price: priceId});
+        const concertsByDay = await Performer.find({ day: dayId, price: priceId });
+        if (concertsByDay) {
+            res.json(concertsByDay)
+        } else res.status(404).json({ message: 'Not found' })
+    } catch (err) { res.status(500).json({ message: ree }) }
+};
+
+exports.getSingleByDay = async (req, res) => {
+    try {
+        const dayId = req.params.day;
+        const concertsByDay = await Performer.find({ day: dayId });
         if (concertsByDay) {
             res.json(concertsByDay)
         } else res.status(404).json({ message: 'Not found' })
