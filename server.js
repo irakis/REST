@@ -7,7 +7,6 @@ const performerRoutes = require('./routes/performer.routes');
 const path = require('path');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
-//const db = require('./db');
 
 const app = express();
 
