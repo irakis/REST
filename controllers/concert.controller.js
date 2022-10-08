@@ -1,11 +1,15 @@
 const Concert = require('../models/concert.model');
+const Seats = require('../models/seat.model');
+
 
 exports.getAll = async (req, res) => {
     try {
-        const con = await Concert.find();
+        let con = await Concert.find();
+        const tickets = await Seats.find();
+        con = await con.map(concert => ({ ...concert.toObject(), freeSeats: (50 - (tickets.filter((ticket) => ticket.day === concert.day)).length) }));
         if (!con) {
             res.status(404).json({ message: 'Not found' })
-        } else res.json(con)
+        } else res.json(con);
     } catch (err) {
         res.status(500).json({ message: err })
     }

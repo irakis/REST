@@ -9,7 +9,7 @@ const Lineup = () => {
 
   const dispatch = useDispatch();
   const concerts = useSelector(getConcerts)
-  const request = useSelector(getRequest);
+  const request = useSelector(getRequest)
 
   useEffect(() => {
     dispatch(loadConcertsRequest())
@@ -19,7 +19,7 @@ const Lineup = () => {
   else if(request.error) return <Alert color="warning">{request.error}</Alert>;
   else if(!request.success || !concerts.length) return <Alert color="info">No concerts</Alert>;
   else if(request.success) return (
-    <Concerts concerts={concerts} />
+    <Concerts concerts={concerts}/>
   )
 
 }
