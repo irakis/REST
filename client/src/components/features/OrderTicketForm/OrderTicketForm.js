@@ -10,9 +10,9 @@ const OrderTicketForm = () => {
   const dispatch = useDispatch();
   const requests = useSelector(getRequests);
   
- useEffect(() => {
-  dispatch(loadSeatsRequest())
-}, [dispatch]);
+  useEffect(() => {
+    dispatch(loadSeatsRequest())
+  }, [dispatch]);
 
   const [order, setOrder] = useState({
     client: '',

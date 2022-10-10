@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertRoutes = require('./routes/concerts.routes');
+const workshopsRoutes = require('./routes/workshops.routes');
 const seatsRoutes = require('./routes/seats.routes');
 const performerRoutes = require('./routes/performer.routes');
 const path = require('path');
@@ -23,6 +24,7 @@ app.use('/api', testimonialsRoutes);
 app.use('/api', concertRoutes);
 app.use('/api', seatsRoutes);
 app.use('/api', performerRoutes);
+app.use('/api', workshopsRoutes);
 
 const server = app.listen(process.env.PORT || 8000, () => {
   console.log('Server is running on port: 8000');
