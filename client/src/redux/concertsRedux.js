@@ -14,7 +14,6 @@ const createActionName = name => `app/${reducerName}/${name}`;
 const START_REQUEST = createActionName('START_REQUEST');
 const END_REQUEST = createActionName('END_REQUEST');
 const ERROR_REQUEST = createActionName('ERROR_REQUEST');
-
 const LOAD_CONCERTS = createActionName('LOAD_CONCERTS');
 
 export const startRequest = () => ({ type: START_REQUEST });

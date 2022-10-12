@@ -7,20 +7,18 @@ const Concert = ({ performer, price, genre, day, image, freeSeats }) => (
     <Row noGutters>
       <Col xs="6">
         <div className="concert__image-container">
-          <img className="concert__image-container__img" src={image} alt={performer}/>
+          <img className="concert__image-container__img" src={image} alt={performer} />
         </div>
       </Col>
       <Col xs="6">
         <div className="concert__info d-block">
-          <img className="concert__info__back" src={image} alt={performer}/>
-          <h2 className="concert__info__performer">{ performer }</h2>
-          <h3 className="concert__info__genre">{ genre }</h3>
-          <div className="d-block pl-0 pb-0">
-            <p className="concert__info__day-n-price position-relative">Only {freeSeats} tickets left!</p>
-          </div>
-          <div className="d-block pl-0 pb-0">
-            <p className="concert__info__day-n-price position-relative">Day: {day}, Price: { price }$</p>
-          </div>
+          <img className="concert__info__back" src={image} alt={performer} />
+          <h2 className="concert__info__performer">{performer}</h2>
+          <h3 className="concert__info__genre mb-7">{genre}</h3>
+
+          <p className="concert__info__day-n-price position-relative first-ticket">Only {freeSeats} tickets left!</p>
+          <p className="concert__info__day-n-price position-relative">Day: {day}, Price: {price}$</p>
+
         </div>
       </Col>
     </Row>

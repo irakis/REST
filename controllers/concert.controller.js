@@ -8,14 +8,10 @@ exports.getAll = async (req, res) => {
 
         let con = await Concert.find();
         const workshop = await Workshop.find();
-        console.log('con', workshop);
-    
         const tickets = await Seats.find();
         con = await con.map(concert => ({ ...concert.toObject(), freeSeats: (50 - (tickets.filter((ticket) => ticket.day === concert.day)).length),
             workshop: workshop.find((work) => work.concertId === (concert._id).toString()) || 'No workshops'
         }));
-
-        console.log('con po midyfikacjach:', con);
 
         if (!con) {
             res.status(404).json({ message: 'Not found' })

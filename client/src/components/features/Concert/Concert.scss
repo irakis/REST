@@ -51,6 +51,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      
     }
   
   }
@@ -71,6 +72,14 @@
   &:hover .concert__image-container__img {
     transform: scale(1.1);
   }
+}
+
+.first-ticket {
+  width: 170px;
+  padding-bottom: 0;
+  max-width: 100%;
+  margin-left: 0.5rem;
+  margin-top: 90px;
 }
 
 @media (max-width: 768px) {

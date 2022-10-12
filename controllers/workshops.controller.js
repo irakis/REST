@@ -1,12 +1,9 @@
-const { restart } = require('nodemon');
-const { JavascriptModulesPlugin } = require('webpack');
 const Workshop = require('../models/workshops.model');
 
 exports.getAll = async (req, res) => {
     try {
         const workshops = await Workshop.find();
         res.json(workshops);
-        console.log(workshops);
         if (!workshops) {
             res.status(404).json({ message: 'Not found' })
         }
