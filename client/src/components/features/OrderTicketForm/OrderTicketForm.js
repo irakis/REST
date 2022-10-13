@@ -45,7 +45,7 @@ const OrderTicketForm = () => {
       setOrder({
         client: '',
         email: '',
-        day: 1,
+        day: order.day,
         seat: '',
       });
       setIsError(false);
