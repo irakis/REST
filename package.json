@@ -36,6 +36,6 @@
     "start": "nodemon server.js",
     "test": "set NODE_ENV=test&& mocha \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test",
-    "build": "react-scripts build"
+    "build": "cd client && yarn install && yarn build"
   }
 }
