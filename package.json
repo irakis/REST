@@ -23,6 +23,7 @@
     "nodemon": "^2.0.19",
     "onchange": "^7.1.0",
     "react": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.54.5",
@@ -35,6 +36,6 @@
     "start": "nodemon server.js",
     "test": "set NODE_ENV=test&& mocha \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test",
-    "build": "cd client && yarn install && yarn build"
+    "build": "react-scripts build"
   }
 }

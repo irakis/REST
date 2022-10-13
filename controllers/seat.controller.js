@@ -62,7 +62,6 @@ exports.postSingle = async (req, res) => {
         const newChair = await new Seat({ id: nextId, day: day, seat: seat, client: client, email: email });
         await newChair.save();
         res.json(newChair);
-        req.io.emit('seatsUpdated', { newChair })
     } catch (err) {
         res.status(500).json({ message: err })
     }

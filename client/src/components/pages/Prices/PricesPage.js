@@ -13,17 +13,14 @@ const Prices = () => {
   }, [dispatch]);
 
   const priceDayOnePre = (concerts.find(concert => concert.day === 1));
-  const priceDayOne = priceDayOnePre && priceDayOnePre.price //<=============== method 1
+  const priceDayOne = priceDayOnePre && priceDayOnePre.price //<=============== optional chaining method 1
   
-  const priceDayTwo = concerts[1]?.price; //<================= method 2
+  const priceDayTwo = concerts[1]?.price; //<================= optional chaining method 2
   const priceDayThree = concerts[2]?.price;
 
-  const workshopNameOnePre = (concerts.find(concert => concert.day === 1));
-  const workshopNameOne = workshopNameOnePre && workshopNameOnePre.workshop.name;//<======dlaczego to działa bez populate?
-  const workshopNameTwoPre = (concerts.find(concert => concert.day === 2));
-  const workshopNameTwo = workshopNameTwoPre && workshopNameTwoPre.workshop.name;
-  const workshopNameThreePre = (concerts.find(concert => concert.day === 3));
-  const workshopNameThree = workshopNameThreePre && workshopNameThreePre.workshop.name;
+  const workshopNameOne = (concerts.find(concert => concert.day === 1))?.workshop?.name;
+  const workshopNameTwo = (concerts.find(concert => concert.day === 2))?.workshop?.name;
+  const workshopNameThree = (concerts.find(concert => concert.day === 3))?.workshop?.name;
 
   return (
 

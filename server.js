@@ -33,9 +33,9 @@ const server = app.listen(process.env.PORT || 8000, () => {
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  console.log('New socket!')
+  console.log('New socket!');
   socket.on('seatsUpdated', () => {
-    console.log('SERVER seatsUpdated noticed!!') //<================ zastanawiam się dlaczego to nie działa? 
+    console.log('SERVER seatsUpdated noticed!!'); 
   })
 });
 
