@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "simple server express based",
   "main": "index.js",
-  "homepage": "/client",
+  "homepage": "./client",
   "author": "Ireneusz Wyszomirski <ireneuszwyszomirski44@gmail.com>",
   "license": "MIT",
   "engines": {
@@ -37,6 +37,6 @@
     "start": "nodemon server.js",
     "test": "set NODE_ENV=test&& mocha \"./{,!(node_modules|client)/**/}*.test.js\"",
     "test:watch": "onchange \"./**/*.js\" -i -k -- yarn test",
-    "build": "react-scripts build"
+    "build": "cd client && react-scripts build"
   }
 }
