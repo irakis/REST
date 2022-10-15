@@ -36,7 +36,8 @@ io.on('connection', (socket) => {
   console.log('New socket!');
   socket.on('seatsUpdated', () => {
     console.log('SERVER seatsUpdated noticed!!'); 
-  })
+    socket.emit('updateSeatsNow');
+  });
 });
 
 app.use(express.static(path.join(__dirname, '/client/build')));

@@ -11,19 +11,22 @@ const SeatChooser = ({ chosenDay, chosenSeat, updateSeat }) => {
   const [socket, setSocket] = useState(null);
   const dispatch = useDispatch();
 
-  const seats = useSelector(getSeats);
-  const takenSeatsByDay = seats.filter(seats => seats.day === chosenDay);
-  const seatsAmount = takenSeatsByDay.length;
-  const requests = useSelector(getRequests);
-
   useEffect(() => {
     const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
       transports: ['websocket']
     });
-    setSocket(socket);
-    socket.on('seatsUpdated', () => { dispatch(loadSeatsRequest()) });
+    setSocket(socket);  
+    socket.on('updateSeatsNow', () => { dispatch(loadSeatsRequest()) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const seats = useSelector(getSeats);
+
+  const takenSeatsByDay = seats.filter(seats => seats.day === chosenDay);
+  const seatsAmount = takenSeatsByDay.length;
+  const requests = useSelector(getRequests);
+
+
 
   const isTaken = (seatId) => {
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));

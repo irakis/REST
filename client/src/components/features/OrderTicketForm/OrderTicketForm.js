@@ -17,7 +17,8 @@ const OrderTicketForm = () => {
   useEffect(() => {
     const socket = io.connect((process.env.NODE_ENV === 'production') ? '/api' : 'http://localhost:8000', {
       transports: ['websocket']
-    }); setSocket(socket)
+    }); 
+    setSocket(socket)
   }, []);
 
   useEffect(() => {
