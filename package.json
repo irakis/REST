@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "simple server express based",
   "main": "index.js",
-  "homepage": "./REST/client",
+  "homepage": "/client",
   "author": "Ireneusz Wyszomirski <ireneuszwyszomirski44@gmail.com>",
   "license": "MIT",
   "engines": {
