@@ -19,11 +19,11 @@ const MainMenu = () => {
   }
 
   return (
-    <div>
+    <div >
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">New Wave Festival</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse isOpen={isOpen} navbar >
           <Nav className="ml-auto align-items-center" navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>
