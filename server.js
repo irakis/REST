@@ -56,7 +56,7 @@ const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
 if (NODE_ENV === 'production') {
-  dbUri = 'mongodb+srv://admin:admin@cluster0.nr5hjqa.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+  dbUri = MONGODB_URI;
 } else if (NODE_ENV === 'test') {
   dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
 } else {
