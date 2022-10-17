@@ -23,7 +23,7 @@ const MainMenu = () => {
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">New Wave Festival</NavbarBrand>
         <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar >
+        <Collapse isOpen={isOpen} navbar className='justify-content-end' >
           <Nav className="ml-auto align-items-center" navbar>
             <NavItem>
               <NavLink href="/">Home</NavLink>

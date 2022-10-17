@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "Ireneusz Wyszomirski <ireneuszwyszomirski44@gmail.com>",
   "license": "MIT",
+  "homepage": "./client",
   "engines": {
     "node": "16.x",
     "yarn": "1.x"
