@@ -5,7 +5,6 @@ const Workshop = require('../models/workshops.model')
 
 exports.getAll = async (req, res) => {
     try {
-
         let con = await Concert.find();
         const workshop = await Workshop.find();
         const tickets = await Seats.find();

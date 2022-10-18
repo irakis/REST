@@ -1,5 +1,6 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertRoutes = require('./routes/concerts.routes');
 const workshopsRoutes = require('./routes/workshops.routes');
@@ -11,6 +12,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
@@ -56,7 +58,7 @@ const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
 if (NODE_ENV === 'production') {
-  dbUri = 'mongodb+srv://admin:admin@cluster0.nr5hjqa.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+  dbUri = process.env.DATABASE_URL;
 } else if (NODE_ENV === 'test') {
   dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
 } else {

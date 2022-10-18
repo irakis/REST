@@ -1,5 +1,6 @@
 const Seat = require('../models/seat.model');
 const { v4: uuidv4 } = require('uuid');
+const sanitize = require('mongo-sanitize');
 
 exports.getAll = async (req, res) => {
     try {
@@ -57,7 +58,9 @@ exports.editSingle = async (req, res) => {
 
 exports.postSingle = async (req, res) => {
     try {
-        const { day, seat, client, email, io } = req.body;
+        const { day, seat, io } = req.body;
+        const client = sanitize(req.body.client);
+        const email = sanitize(req.body.email);
         const nextId = uuidv4();
         const newChair = await new Seat({ id: nextId, day: day, seat: seat, client: client, email: email });
         await newChair.save();
