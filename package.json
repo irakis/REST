@@ -38,7 +38,7 @@
     "socket.io": "^4.5.3",
     "socket.io-client": "^4.5.3",
     "uuid": "^8.3.2",
-    "webpack": "^5.74.0",
+    "webpack": "^5.76.0",
     "yarn": "^1.22.19"
   },
   "scripts": {
